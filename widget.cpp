@@ -16,6 +16,7 @@ Widget::Widget(QWidget *parent) :
     stack_1 = new QStack<QChar>;
     stack_2 = new QStack<QChar>;
     lineEdit = new QLineEdit();
+
     pushButton = new QPushButton("Добавить символ в стек");
     connect(pushButton, SIGNAL(clicked()), this, SLOT(push()));
 
@@ -41,9 +42,12 @@ Widget::Widget(QWidget *parent) :
 
 void Widget::push()
 {
-    QChar *qs = lineEdit->text().data();
-
-    stack_1->push(*qs);
+    QString qs = lineEdit->text();
+     QChar *qc;
+    for (int i= 0; i <qs.size(); i++)
+    {
+        stack_1->push(qs[i]);
+    }
     lineEdit->setText("");
 }
 
